@@ -84,7 +84,7 @@ RUN cd /tmp/. && curl -JRLO "https://downloads.globus.org/globus-connect-persona
 
 
 ### Install rclone (for multi-cloud)
-REF:  https://rclone.org/
+### REF: https://rclone.org/
 RUN apt-get -y install rclone
 
 ### Install cyberduck (for multi-cloud)
