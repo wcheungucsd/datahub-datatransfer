@@ -71,21 +71,22 @@ RUN echo -e "deb https://s3.amazonaws.com/repo.deb.cyberduck.io stable main" | t
 RUN add-apt-repository -y ppa:rapier1/hpnssh && apt-get -y update && apt-get -y install hpnssh
 
 ### Install fdt
-###RUN apt-get install -y java
+#RUN apt-get install -y java
 RUN cd /usr/local/bin/. && curl -JRLO "https://github.com/fast-data-transfer/fdt/releases/download/0.27.0/fdt.jar" && chmod 644 ./fdt.jar && cd
 
 ### Install Globus Connect Personal (GCP)
-RUN cd /usr/local/. && curl -JRLO "https://downloads.globus.org/globus-connect-personal/linux/stable/globusconnectpersonal-latest.tgz" && tar xvzf globusconnectpersonal-latest.tgz && cd /usr/local/bin/. && ln -sf /usr/local/globusconnectpersonal-*/globusconnectpersonal . && cd
+RUN cd /tmp/. && curl -JRLO "https://downloads.globus.org/globus-connect-personal/linux/stable/globusconnectpersonal-latest.tgz" && cd /usr/local/bin/. && tar xvzf /tmp/globusconnectpersonal-latest.tgz && cd /usr/local/bin/. && ln -sf /usr/local/globusconnectpersonal-*/globusconnectpersonal . && cd
 
 ### Install awscli (for AWS S3)
 #RUN snap install aws-cli --classic
 RUN cd /tmp/. && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && ./aws/install & cd
 
 ### Install gcloud (for Google Drive)
-###
+#RUN snap install google-cloud-cli --classic
+RUN RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg && apt-get update -y && apt-get install google-cloud-cli -y
 
 ### Install gdrive (for Google Drive)
-###
+RUN cd /tmp/. && curl -JRLO "https://github.com/glotlabs/gdrive/releases/download/3.9.1/gdrive_linux-x64.tar.gz" && cd /usr/local/bin/. && tar xvzf /tmp/gdrive_linux-x86.tar.gz && chmod 755 ./gdrive && cd
 
 ### Install google-drive-ocamlfuse (for Google Drive)
 RUN add-apt-repository -y ppa:alessandro-strada/ppa && apt-get -y update && apt-get -y install google-drive-ocamlfuse
@@ -94,10 +95,11 @@ RUN add-apt-repository -y ppa:alessandro-strada/ppa && apt-get -y update && apt-
 RUN cd /tmp/. && curl -sSL -O https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb && dpkg -i packages-microsoft-prod.deb && apt-get -y update && apt-get -y install azcopy && cd
 
 ### Install Dropbox
-###
+RUN cd /tmp/. && curl -JRLO "https://linux.dropboxstatic.com/packages/ubuntu/dropbox_2024.04.17_amd64.deb" && dpkg -i dropbox_2024.04.17_amd64.deb && apt-get -y update && apt-get -y install dropbox && cd 
 
 ### Install OneDrive
-###
+RUN wget -qO - https://download.opensuse.org/repositories/home:/npreining:/debian-ubuntu-onedrive/xUbuntu_22.04/Release.key | gpg --dearmor | sudo tee /usr/share/keyrings/obs-onedrive.gpg > /dev/null && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/obs-onedrive.gpg] https://download.opensuse.org/repositories/home:/npreining:/debian-ubuntu-onedrive/xUbuntu_22.04/ ./" | tee /etc/apt/sources.list.d/onedrive.list
+ && apt-get -y update && apt install --no-install-recommends --no-install-suggests onedrive
 
 
 
