@@ -23,11 +23,16 @@ RUN apt-get -y clean && apt-get -y update && apt-get -y upgrade
 ### Install ncftp
 RUN apt-get -y install ncftp
 
+### Install bbcp
+RUN cd /usr/local/bin/. && curl -kJRLO https://www.slac.stanford.edu/~abh/bbcp/bin/amd64_ubuntu22.04/bbcp && chmod 755 ./bbcp && cd
+
+
 ### Install aria2
 RUN apt-get -y install aria2
 
 ### Install aws-cli (for AWS S3)
-RUN snap install aws-cli --classic
+#RUN snap install aws-cli --classic
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && ./aws/install
 
 ### Install RClone
 RUN apt-get -y install rclone
