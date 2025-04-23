@@ -19,10 +19,7 @@ RUN apt-get -y clean && apt-get -y update && apt-get -y upgrade
 
 
 ###
-### Install extra file/data transfer apps
-### REF: https://fasterdata.es.net/data-transfer-tools/
-### REF: http://moo.nac.uci.edu/~hjm/HOWTO_move_data.html
-### REF: https://education.sdsc.edu/training/interactive/?id=202406-Data-Transfer
+### Install extra support apps
 ###
 
 ### Install mandoc man-db
@@ -30,6 +27,15 @@ RUN apt-get install -y mandoc man-db
 
 ### Install support for PPAs
 RUN apt-get install -y software-properties-common
+
+
+
+###
+### Install extra file/data transfer apps
+### REF: https://fasterdata.es.net/data-transfer-tools/
+### REF: http://moo.nac.uci.edu/~hjm/HOWTO_move_data.html
+### REF: https://education.sdsc.edu/training/interactive/?id=202406-Data-Transfer
+###
 
 ### Install wget
 RUN apt-get -y install wget
@@ -68,6 +74,9 @@ RUN add-apt-repository -y ppa:rapier1/hpnssh && apt-get -y update && apt-get -y 
 ###RUN apt-get install -y java
 RUN cd /usr/local/bin/. && curl -JRLO "https://github.com/fast-data-transfer/fdt/releases/download/0.27.0/fdt.jar" && chmod 644 ./fdt.jar && cd
 
+### Install Globus Connect Personal (GCP)
+RUN cd /usr/local/. && curl -JRLO "https://downloads.globus.org/globus-connect-personal/linux/stable/globusconnectpersonal-latest.tgz" && tar xvzf globusconnectpersonal-latest.tgz && cd /usr/local/bin/. && ln -sf /usr/local/globusconnectpersonal-*/globusconnectpersonal . && cd
+
 ### Install awscli (for AWS S3)
 #RUN snap install aws-cli --classic
 RUN cd /tmp/. && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && ./aws/install & cd
@@ -79,7 +88,7 @@ RUN cd /tmp/. && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
 ###
 
 ### Install google-drive-ocamlfuse (for Google Drive)
-###
+RUN add-apt-repository -y ppa:alessandro-strada/ppa && apt-get -y update && apt-get -y install google-drive-ocamlfuse
 
 ### Install azcopy (for Azure)
 RUN cd /tmp/. && curl -sSL -O https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb && dpkg -i packages-microsoft-prod.deb && apt-get -y update && apt-get -y install azcopy && cd
