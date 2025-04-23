@@ -118,9 +118,9 @@ RUN cd /tmp/. && curl -sSL -O https://packages.microsoft.com/config/ubuntu/22.04
 RUN cd /tmp/. && wget -qO - https://download.opensuse.org/repositories/home:/npreining:/debian-ubuntu-onedrive/xUbuntu_22.04/Release.key | gpg --dearmor | sudo tee /usr/share/keyrings/obs-onedrive.gpg > /dev/null && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/obs-onedrive.gpg] https://download.opensuse.org/repositories/home:/npreining:/debian-ubuntu-onedrive/xUbuntu_22.04/ ./" | tee /etc/apt/sources.list.d/onedrive.list && apt-get -y update && apt-get -y install --no-install-recommends --no-install-suggests onedrive && cd
 
 ### Install Dropbox
-### REF: https://help.dropbox.com/installs/linux-commands
-RUN cd /tmp/. && curl -JRLO "https://linux.dropboxstatic.com/packages/ubuntu/dropbox_2024.04.17_amd64.deb" && dpkg -i dropbox_2024.04.17_amd64.deb && apt-get -y update && apt-get -y install dropbox && cd 
-
+### REF: https://www.dropbox.com/install-linux
+RUN cd /tmp/. && curl -JRLO "https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2020.03.04_amd64.deb" && dpkg -i dropbox_2020.03.04_amd64.deb && apt-get -y update && apt-get -y install dropbox && cd 
+#RUN cd /tmp/. && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf - && cd
 
 
 ###
