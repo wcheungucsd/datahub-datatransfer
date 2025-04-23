@@ -50,7 +50,7 @@ RUN apt-get -y install aria2
 RUN apt-get -y install rclone
 
 ### Install bbcp
-RUN cd /usr/local/bin/. && curl -kJRLO https://www.slac.stanford.edu/~abh/bbcp/bin/amd64_ubuntu22.04/bbcp && chmod 755 ./bbcp && cd
+RUN cd /usr/local/bin/. && curl -kJRLO "https://www.slac.stanford.edu/~abh/bbcp/bin/amd64_ubuntu22.04/bbcp" && chmod 755 ./bbcp && cd
 
 ### Install Cyberduck
 RUN echo -e "deb https://s3.amazonaws.com/repo.deb.cyberduck.io stable main" | tee /etc/apt/sources.list.d/cyberduck.list > /dev/null && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FE7097963FEFBE72 && apt-get -y update && apt-get -y install duck
@@ -58,6 +58,13 @@ RUN echo -e "deb https://s3.amazonaws.com/repo.deb.cyberduck.io stable main" | t
 ### Install aws-cli (for AWS S3)
 #RUN snap install aws-cli --classic
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && ./aws/install
+
+### Install hpnssh
+RUN add-apt-repository -y ppa:rapier1/hpnssh && apt-get -y update && apt-get -y install hpnssh
+
+### Install fdt
+RUN cd /usr/local/bin/. && curl -JRLO "https://github.com/fast-data-transfer/fdt/releases/download/0.27.0/fdt.jar" && chmod 644 ./fdt.jar && cd
+
 
 
 ###
