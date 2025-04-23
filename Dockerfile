@@ -75,7 +75,7 @@ RUN add-apt-repository -y ppa:rapier1/hpnssh && apt-get -y update && apt-get -y 
 
 ### Install fdt
 ### REF: https://fast-data-transfer.github.io/
-#RUN apt-get install -y java
+RUN apt-get install -y default-jre
 RUN cd /usr/local/bin/. && curl -JRLO "https://github.com/fast-data-transfer/fdt/releases/download/0.27.0/fdt.jar" && chmod 644 ./fdt.jar && cd
 
 ### Install Globus Connect Personal (GCP)
