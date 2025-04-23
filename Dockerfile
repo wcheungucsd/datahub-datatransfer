@@ -18,10 +18,12 @@ USER root
 RUN apt-get -y clean && apt-get -y update && apt-get -y upgrade
 
 
+###
 ### Install extra file/data transfer apps
 ### REF: https://fasterdata.es.net/data-transfer-tools/
 ### REF: http://moo.nac.uci.edu/~hjm/HOWTO_move_data.html
 ### REF: https://education.sdsc.edu/training/interactive/?id=202406-Data-Transfer
+###
 
 ### Install wget
 RUN apt-get -y install wget
@@ -58,13 +60,22 @@ RUN echo -e "deb https://s3.amazonaws.com/repo.deb.cyberduck.io stable main" | t
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && ./aws/install
 
 
+###
 ### Install extra file management apps
+###
 
 ### Install tree
 RUN apt-get -y install tree
 
 ### Install gdu
 RUN apt-get -y install gdu
+
+### Install ncdu
+RUN apt-get -y install ncdu
+
+### Install duc
+RUN apt-get -y install duc
+
 
 
 # 3) install packages using notebook user
