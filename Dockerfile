@@ -18,17 +18,31 @@ USER root
 RUN apt-get -y clean && apt-get -y update && apt-get -y upgrade
 
 
-### Install RClone
-RUN apt-get -y install rclone
-
-### Install aria2
-RUN apt-get -y install aria2
+### Install extra file/data transfer apps
 
 ### Install ncftp
 RUN apt-get -y install ncftp
 
+### Install aria2
+RUN apt-get -y install aria2
+
+### Install aws-cli (for AWS S3)
+RUN snap install aws-cli --classic
+
+### Install RClone
+RUN apt-get -y install rclone
+
 ### Install Cyberduck
 RUN echo -e "deb https://s3.amazonaws.com/repo.deb.cyberduck.io stable main" | tee /etc/apt/sources.list.d/cyberduck.list > /dev/null && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FE7097963FEFBE72 && apt-get -y update && apt-get -y install duck
+
+
+### Install extra file management apps
+
+### Install tree
+RUN apt-get -y install tree
+
+### Install gdu
+RUN apt-get -y install gdu
 
 
 # 3) install packages using notebook user
