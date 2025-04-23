@@ -49,6 +49,18 @@ RUN apt-get -y install curl
 ### REF: https://github.com/RsyncProject/rsync
 RUN apt-get -y install rsync
 
+### Install netcat
+### REF: https://netcat.sourceforge.net/
+RUN apt-get -y install netcat
+
+### Install socat
+### REF: http://www.dest-unreach.org/socat/
+RUN apt-get -y install socat
+
+### Install ncat
+### REF: https://nmap.org/ncat/
+RUN apt-get -y install ncat
+
 ### Install ncftp
 ### REF: https://www.ncftp.com/ncftp/
 RUN apt-get -y install ncftp
