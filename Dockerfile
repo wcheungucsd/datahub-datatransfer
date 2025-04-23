@@ -60,7 +60,7 @@ RUN echo -e "deb https://s3.amazonaws.com/repo.deb.cyberduck.io stable main" | t
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && ./aws/install
 
 ### Install hpnssh
-RUN add-apt-repository -y ppa:rapier1/hpnssh && apt-get -y update && apt-get -y install hpnssh
+RUN apt install -y software-properties-common && add-apt-repository -y ppa:rapier1/hpnssh && apt-get -y update && apt-get -y install hpnssh
 
 ### Install fdt
 RUN cd /usr/local/bin/. && curl -JRLO "https://github.com/fast-data-transfer/fdt/releases/download/0.27.0/fdt.jar" && chmod 644 ./fdt.jar && cd
