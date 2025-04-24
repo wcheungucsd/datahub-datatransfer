@@ -92,7 +92,7 @@ RUN cd /usr/local/bin/. && curl -JRLO "https://github.com/fast-data-transfer/fdt
 
 ### Install Globus Connect Personal (GCP)
 ### REF: https://www.globus.org/globus-connect-personal
-RUN cd /tmp/. && curl -JRLO "https://downloads.globus.org/globus-connect-personal/linux/stable/globusconnectpersonal-latest.tgz" && cd /usr/local/bin/. && tar xvzf /tmp/globusconnectpersonal-latest.tgz && cd /usr/local/bin/. && ln -sf /usr/local/globusconnectpersonal-*/globusconnectpersonal . && cd
+RUN cd /tmp/. && curl -JRLO "https://downloads.globus.org/globus-connect-personal/linux/stable/globusconnectpersonal-latest.tgz" && cd /usr/local/. && tar xvzf /tmp/globusconnectpersonal-latest.tgz && cd /usr/local/bin/. && ln -sf /usr/local/globusconnectpersonal-*/globusconnectpersonal . && cd
 
 
 ### Install rclone (for multi-cloud)
