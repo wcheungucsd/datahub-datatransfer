@@ -103,10 +103,20 @@ RUN apt-get -y install rclone
 ### REF: https://duck.sh/
 RUN echo -e "deb https://s3.amazonaws.com/repo.deb.cyberduck.io stable main" | tee /etc/apt/sources.list.d/cyberduck.list > /dev/null && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FE7097963FEFBE72 && apt-get -y update && apt-get -y install duck
 
+
 ### Install awscli (for AWS S3)
 ### REF: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 #RUN snap install aws-cli --classic
-RUN cd /tmp/. && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && ./aws/install & cd
+RUN cd /tmp/. && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && ./aws/install && cd
+
+### Install mount-s3 (for AWS S3)
+### REF: https://docs.aws.amazon.com/AmazonS3/latest/userguide/mountpoint-installation.html
+RUN cd /tmp/. && wget "https://s3.amazonaws.com/mountpoint-s3-release/latest/x86_64/mount-s3.deb" && apt-get install ./mount-s3.deb && cd
+
+### Install s3fs (for AWS S3)
+### REF: https://github.com/s3fs-fuse/s3fs-fuse
+RUN apt-get -y install s3fs
+
 
 ### Install gcloud (for Google Drive)
 ### REF: https://cloud.google.com/sdk/docs/install#deb
@@ -121,6 +131,7 @@ RUN cd /tmp/. && curl -JRLO "https://github.com/glotlabs/gdrive/releases/downloa
 ### REF: https://github.com/astrada/google-drive-ocamlfuse
 RUN add-apt-repository -y ppa:alessandro-strada/ppa && apt-get -y update && apt-get -y install google-drive-ocamlfuse
 
+
 ### Install azcopy (for Azure cloud)
 ### REF: https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
 RUN cd /tmp/. && curl -sSL -O https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb && dpkg -i packages-microsoft-prod.deb && apt-get -y update && apt-get -y install azcopy && cd
@@ -129,6 +140,7 @@ RUN cd /tmp/. && curl -sSL -O https://packages.microsoft.com/config/ubuntu/22.04
 ### REF: https://github.com/abraunegg/onedrive/blob/master/docs/install.md
 #RUN cd /tmp/. && wget -qO - https://download.opensuse.org/repositories/home:/npreining:/debian-ubuntu-onedrive/xUbuntu_22.04/Release.key | gpg --dearmor | sudo tee /usr/share/keyrings/obs-onedrive.gpg > /dev/null && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/obs-onedrive.gpg] https://download.opensuse.org/repositories/home:/npreining:/debian-ubuntu-onedrive/xUbuntu_22.04/ ./" | tee /etc/apt/sources.list.d/onedrive.list && apt-get -y update && apt-get -y install --no-install-recommends --no-install-suggests onedrive && cd
 RUN apt-get -y install onedrive
+
 
 ### Install Dropbox
 ### REF: https://www.dropbox.com/install-linux , https://help.dropbox.com/installs/linux-commands
