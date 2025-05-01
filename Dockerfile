@@ -111,7 +111,7 @@ RUN cd /tmp/. && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
 
 ### Install mount-s3 (for AWS S3)
 ### REF: https://docs.aws.amazon.com/AmazonS3/latest/userguide/mountpoint-installation.html
-RUN cd /tmp/. && wget "https://s3.amazonaws.com/mountpoint-s3-release/latest/x86_64/mount-s3.deb" && apt-get install ./mount-s3.deb && cd
+RUN cd /tmp/. && wget "https://s3.amazonaws.com/mountpoint-s3-release/latest/x86_64/mount-s3.deb" && apt-get install -y ./mount-s3.deb && cd
 
 ### Install s3fs (for AWS S3)
 ### REF: https://github.com/s3fs-fuse/s3fs-fuse
