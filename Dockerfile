@@ -148,6 +148,11 @@ RUN apt-get -y install onedrive
 #RUN cd /tmp/. && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf - && cd
 
 
+### Install Swift (for OpenStack cloud)
+### REF: https://github.com/openstack/python-swiftclient
+RUN apt-get -y install python3-swiftclient
+
+
 
 ###
 ### Install extra file management apps
