@@ -180,7 +180,7 @@ RUN apt-get -y install ncdu
 RUN apt-get -y install duc
 
 ### Install mc
-RUN apt-get -y install mc
+#RUN apt-get -y install mc
 
 
 
