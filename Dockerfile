@@ -179,14 +179,17 @@ RUN apt-get -y install ncdu
 ### Install duc
 RUN apt-get -y install duc
 
+### Install mc
+RUN apt-get -y install mc
+
 
 
 # 3) install packages using notebook user
-USER jovyan
+#USER jovyan
 
 # RUN conda install -y scikit-learn
 
-RUN pip install --no-cache-dir networkx scipy
+#RUN pip install --no-cache-dir networkx scipy
 
 # Override command to disable running jupyter notebook at launch
 # CMD ["/bin/bash"]
