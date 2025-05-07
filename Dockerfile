@@ -77,6 +77,14 @@ RUN apt-get -y install axel
 ### REF: https://aria2.github.io/
 RUN apt-get -y install aria2
 
+### Install cadaver
+### REF: ???
+RUN apt-get -y install cadaver
+
+### Install davfs2
+### REF: ???
+RUN apt-get -y install davfs2
+
 ### Install bbcp
 ### REF: https://www.slac.stanford.edu/~abh/bbcp/
 RUN cd /usr/local/bin/. && curl -kJRLO "https://www.slac.stanford.edu/~abh/bbcp/bin/amd64_ubuntu22.04/bbcp" && chmod 755 ./bbcp && cd
