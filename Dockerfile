@@ -14,8 +14,6 @@ LABEL maintainer="wcheung@ucsd.edu"
 # 2) change to root to install packages
 USER root
 
-foo
-
 ### Clean up and update APT
 RUN apt-get -y clean && apt-get -y update && apt-get -y upgrade
 
@@ -78,6 +76,11 @@ RUN apt-get -y install axel
 ### Install aria2
 ### REF: https://aria2.github.io/
 RUN apt-get -y install aria2
+
+### Install zsync
+### REF: https://zsync.moria.org.uk/
+RUN apt-get -y install zsync
+
 
 ### Install cadaver
 ### REF: ???
@@ -142,6 +145,10 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.
 ### REF: https://github.com/astrada/google-drive-ocamlfuse
 #RUN add-apt-repository -y ppa:alessandro-strada/ppa && apt-get -y update && apt-get -y install google-drive-ocamlfuse
 
+
+### Install azure-cli
+### REF: https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?view=azure-cli-latest&pivots=apt
+RUN apt-get -y install azure-cli
 
 ### Install azcopy (for Azure cloud)
 ### REF: https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
