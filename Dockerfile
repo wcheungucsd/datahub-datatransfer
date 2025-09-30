@@ -14,6 +14,8 @@ LABEL maintainer="wcheung@ucsd.edu"
 # 2) change to root to install packages
 USER root
 
+foo
+
 ### Clean up and update APT
 RUN apt-get -y clean && apt-get -y update && apt-get -y upgrade
 
