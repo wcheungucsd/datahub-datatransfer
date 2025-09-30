@@ -195,5 +195,3 @@ RUN apt-get -y install duc
 
 # Override command to disable running jupyter notebook at launch
 # CMD ["/bin/bash"]
-
-#TEST
