@@ -176,6 +176,17 @@ RUN cd /tmp/. && curl -JRLO "https://aka.ms/downloadazcopy-v10-linux" && tar xvz
 #RUN apt-get -y install python3-swiftclient
 
 
+### Install qBitorrent
+### REF: https://www.qbittorrent.org/download
+RUN apt-get -y install qbittorrent
+#RUN add-apt-repository ppa:qbittorrent-team/qbittorrent-stable && apt-get -y update && apt-get -y install qbittorrent
+
+### Install Transmission
+### REF: https://transmissionbt.com/download
+RUN apt-get -y install transmission-gtk
+
+
+
 
 ###
 ### Install extra file management apps
