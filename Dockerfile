@@ -148,7 +148,8 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.
 
 ### Install azure-cli
 ### REF: https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?view=azure-cli-latest&pivots=apt
-RUN apt-get -y install azure-cli
+#RUN apt-get -y install azure-cli
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
 ### Install azcopy (for Azure cloud)
 ### REF: https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
