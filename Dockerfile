@@ -103,6 +103,7 @@ RUN add-apt-repository -y ppa:rapier1/hpnssh && apt-get -y update && apt-get -y 
 #RUN apt-get install -y default-jre
 #RUN cd /usr/local/bin/. && curl -JRLO "https://github.com/fast-data-transfer/fdt/releases/download/0.27.0/fdt.jar" && chmod 644 ./fdt.jar && cd
 
+
 ### Install Globus Connect Personal (GCP)
 ### REF: https://www.globus.org/globus-connect-personal
 RUN cd /tmp/. && curl -JRLO "https://downloads.globus.org/globus-connect-personal/linux/stable/globusconnectpersonal-latest.tgz" && cd /usr/local/. && tar xvzf /tmp/globusconnectpersonal-latest.tgz && cd /usr/local/bin/. && ln -sf /usr/local/globusconnectpersonal-*/globusconnectpersonal . && cd
@@ -146,14 +147,17 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.
 #RUN add-apt-repository -y ppa:alessandro-strada/ppa && apt-get -y update && apt-get -y install google-drive-ocamlfuse
 
 
-### Install azure-cli
+### Install azure-cli (for Azure cloud)
 ### REF: https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?view=azure-cli-latest&pivots=apt
 #RUN apt-get -y install azure-cli
-RUN curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 
 ### Install azcopy (for Azure cloud)
 ### REF: https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
+### REF: https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10?tabs=apt
 #RUN cd /tmp/. && curl -sSL -O https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb && dpkg -i packages-microsoft-prod.deb && apt-get -y update && apt-get -y install azcopy && cd
+#RUN cd /tmp/. && curl -sSL -O https://packages.microsoft.com/config/<distribution>/<version>/packages-microsoft-prod.deb && dpkg -i packages-microsoft-prod.deb && rm packages-microsoft-prod.deb && apt-get -y update && apt-get install azcopy && cd
+RUN cd /tmp/. && curl -JRLO "https://aka.ms/downloadazcopy-v10-linux" && tar xvzf /tmp/azcopy_linux_amd64_* && cp -p /tmp/azcopy_linux_amd64_*/azcopy /usr/local/bin/. && cd
 
 ### Install OneDrive
 ### REF: https://github.com/abraunegg/onedrive/blob/master/docs/install.md
