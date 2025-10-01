@@ -156,7 +156,7 @@ RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 ### REF: https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
 ### REF: https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10?tabs=apt
 #RUN cd /tmp/. && curl -sSL -O https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb && dpkg -i packages-microsoft-prod.deb && rm packages-microsoft-prod.deb && apt-get -y update && apt-get install azcopy && cd
-RUN cd /tmp/. && curl -JRLO "https://aka.ms/downloadazcopy-v10-linux" && tar xvzf /tmp/azcopy_linux_amd64_* && cp -p /tmp/azcopy_linux_amd64_*/azcopy /usr/local/bin/. && chown root:root /usr/local/bin/azcopy && chmod 755 /usr/local/bin/azcopy && cd
+#RUN cd /tmp/. && curl -JRLO "https://aka.ms/downloadazcopy-v10-linux" && tar xvzf /tmp/azcopy_linux_amd64_* && cp -p /tmp/azcopy_linux_amd64_*/azcopy /usr/local/bin/. && chown root:root /usr/local/bin/azcopy && chmod 755 /usr/local/bin/azcopy && cd
 
 ### Install OneDrive
 ### REF: https://github.com/abraunegg/onedrive/blob/master/docs/install.md
@@ -179,20 +179,21 @@ RUN cd /tmp/. && curl -JRLO "https://aka.ms/downloadazcopy-v10-linux" && tar xvz
 #RUN apt-get -y install python3-swiftclient
 
 
+### Install Transmission
+### REF: https://transmissionbt.com/download
+#RUN apt-get -y install transmission-gtk
+RUN apt-get -y install transmission-cli
+
+
 ### Install qBitorrent
 ### REF: https://www.qbittorrent.org/download
 #RUN apt-get -y install qbittorrent
 #RUN apt-get -y install qbittorrent-nox
 #RUN add-apt-repository ppa:qbittorrent-team/qbittorrent-stable && apt-get -y update && apt-get -y install qbittorrent
 
-### Install Transmission
-### REF: https://transmissionbt.com/download
-#RUN apt-get -y install transmission-gtk
-RUN apt-get -y install transmission-cli
-
 ### Install rTorrent
 ### REF: https://github.com/rakshasa/rtorrent
-RUN apt-get -y install rtorrrent
+#RUN apt-get -y install rtorrrent
 
 
 
