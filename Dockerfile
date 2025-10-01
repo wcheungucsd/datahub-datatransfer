@@ -73,13 +73,13 @@ RUN apt-get -y install lftp
 ### REF: https://github.com/axel-download-accelerator/axel
 RUN apt-get -y install axel
 
-### Install aria2
+### Install aria2c
 ### REF: https://aria2.github.io/
 RUN apt-get -y install aria2
 
 ### Install zsync
 ### REF: https://zsync.moria.org.uk/
-RUN apt-get -y install zsync
+#RUN apt-get -y install zsync
 
 
 ### Install cadaver
@@ -113,7 +113,7 @@ RUN cd /tmp/. && curl -JRLO "https://downloads.globus.org/globus-connect-persona
 ### REF: https://rclone.org/
 RUN apt-get -y install rclone
 
-### Install cyberduck (for multi-cloud)
+### Install duck / Cyberduck CLI (for multi-cloud)
 ### REF: https://duck.sh/
 RUN echo -e "deb https://s3.amazonaws.com/repo.deb.cyberduck.io stable main" | tee /etc/apt/sources.list.d/cyberduck.list > /dev/null && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FE7097963FEFBE72 && apt-get -y update && apt-get -y install duck
 
@@ -147,7 +147,7 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.
 #RUN add-apt-repository -y ppa:alessandro-strada/ppa && apt-get -y update && apt-get -y install google-drive-ocamlfuse
 
 
-### Install azure-cli (for Azure cloud)
+### Install az / azure-cli (for Azure cloud)
 ### REF: https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?view=azure-cli-latest&pivots=apt
 #RUN apt-get -y install azure-cli
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
@@ -155,14 +155,17 @@ RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 ### Install azcopy (for Azure cloud)
 ### REF: https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
 ### REF: https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10?tabs=apt
-#RUN cd /tmp/. && curl -sSL -O https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb && dpkg -i packages-microsoft-prod.deb && apt-get -y update && apt-get -y install azcopy && cd
-#RUN cd /tmp/. && curl -sSL -O https://packages.microsoft.com/config/<distribution>/<version>/packages-microsoft-prod.deb && dpkg -i packages-microsoft-prod.deb && rm packages-microsoft-prod.deb && apt-get -y update && apt-get install azcopy && cd
-RUN cd /tmp/. && curl -JRLO "https://aka.ms/downloadazcopy-v10-linux" && tar xvzf /tmp/azcopy_linux_amd64_* && cp -p /tmp/azcopy_linux_amd64_*/azcopy /usr/local/bin/. && cd
+#RUN cd /tmp/. && curl -sSL -O https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb && dpkg -i packages-microsoft-prod.deb && rm packages-microsoft-prod.deb && apt-get -y update && apt-get install azcopy && cd
+RUN cd /tmp/. && curl -JRLO "https://aka.ms/downloadazcopy-v10-linux" && tar xvzf /tmp/azcopy_linux_amd64_* && cp -p /tmp/azcopy_linux_amd64_*/azcopy /usr/local/bin/. && chown root:root /usr/local/bin/azcopy && chmod 755 /usr/local/bin/azcopy && cd
 
 ### Install OneDrive
 ### REF: https://github.com/abraunegg/onedrive/blob/master/docs/install.md
 #RUN cd /tmp/. && wget -qO - https://download.opensuse.org/repositories/home:/npreining:/debian-ubuntu-onedrive/xUbuntu_22.04/Release.key | gpg --dearmor | sudo tee /usr/share/keyrings/obs-onedrive.gpg > /dev/null && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/obs-onedrive.gpg] https://download.opensuse.org/repositories/home:/npreining:/debian-ubuntu-onedrive/xUbuntu_22.04/ ./" | tee /etc/apt/sources.list.d/onedrive.list && apt-get -y update && apt-get -y install --no-install-recommends --no-install-suggests onedrive && cd
 #RUN apt-get -y install onedrive
+
+### Install onedrive-cli
+### REF: https://github.com/lionello/onedrive-cli
+#RUN 
 
 
 ### Install Dropbox
@@ -178,12 +181,18 @@ RUN cd /tmp/. && curl -JRLO "https://aka.ms/downloadazcopy-v10-linux" && tar xvz
 
 ### Install qBitorrent
 ### REF: https://www.qbittorrent.org/download
-RUN apt-get -y install qbittorrent
+#RUN apt-get -y install qbittorrent
+#RUN apt-get -y install qbittorrent-nox
 #RUN add-apt-repository ppa:qbittorrent-team/qbittorrent-stable && apt-get -y update && apt-get -y install qbittorrent
 
 ### Install Transmission
 ### REF: https://transmissionbt.com/download
-RUN apt-get -y install transmission-gtk
+#RUN apt-get -y install transmission-gtk
+RUN apt-get -y install transmission-cli
+
+### Install rTorrent
+### REF: https://github.com/rakshasa/rtorrent
+RUN apt-get -y install rtorrrent
 
 
 
