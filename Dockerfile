@@ -118,41 +118,55 @@ RUN apt-get -y install rclone
 RUN echo -e "deb https://s3.amazonaws.com/repo.deb.cyberduck.io stable main" | tee /etc/apt/sources.list.d/cyberduck.list > /dev/null && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FE7097963FEFBE72 && apt-get -y update && apt-get -y install duck
 
 
-### Install awscli (for AWS S3)
+### For AWS S3 cloud
+
+### Install awscli
 ### REF: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 #RUN snap install aws-cli --classic
 RUN cd /tmp/. && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && ./aws/install && cd
 
-### Install mount-s3 (for AWS S3)
+### Install mount-s3
 ### REF: https://docs.aws.amazon.com/AmazonS3/latest/userguide/mountpoint-installation.html
 #RUN apt-get -y install fuse3
 #RUN cd /tmp/. && wget "https://s3.amazonaws.com/mountpoint-s3-release/latest/x86_64/mount-s3.deb" && apt-get install -y ./mount-s3.deb && cd
 
-### Install s3fs (for AWS S3)
+### Install s3fs
 ### REF: https://github.com/s3fs-fuse/s3fs-fuse
 #RUN apt-get -y install s3fs
 
+### Install s3cmd
+### REF: https://s3tools.org/s3cmd
+RUN apt-get -y install s3cmd
 
-### Install gcloud (for Google Drive)
+### Install s5cmd
+### REF: https://github.com/peak/s5cmd
+RUN cd /tmp/. && curl -JRLO "https://github.com/peak/s5cmd/releases/download/v2.3.0/s5cmd_2.3.0_Linux-64bit.tar.gz" && cd /usr/local/. && tar xvzf /tmp/s5cmd_2.3.0_Linux-64bit.tar.gz && cd
+
+
+### For Google Drive cloud
+
+### Install gcloud
 ### REF: https://cloud.google.com/sdk/docs/install#deb
 #RUN snap install google-cloud-cli --classic
 RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg && apt-get update -y && apt-get install google-cloud-cli -y
 
-### Install gdrive (for Google Drive)
+### Install gdrive
 ### REF: https://github.com/glotlabs/gdrive
 #RUN cd /tmp/. && curl -JRLO "https://github.com/glotlabs/gdrive/releases/download/3.9.1/gdrive_linux-x64.tar.gz" && cd /usr/local/bin/. && tar xvzf /tmp/gdrive_linux-x64.tar.gz && chmod 755 ./gdrive && cd
 
-### Install google-drive-ocamlfuse (for Google Drive)
+### Install google-drive-ocamlfuse
 ### REF: https://github.com/astrada/google-drive-ocamlfuse
 #RUN add-apt-repository -y ppa:alessandro-strada/ppa && apt-get -y update && apt-get -y install google-drive-ocamlfuse
 
 
-### Install az / azure-cli (for Azure cloud)
+### For Microsoft Azure cloud
+
+### Install az / azure-cli
 ### REF: https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?view=azure-cli-latest&pivots=apt
 #RUN apt-get -y install azure-cli
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 
-### Install azcopy (for Azure cloud)
+### Install azcopy
 ### REF: https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
 ### REF: https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10?tabs=apt
 #RUN cd /tmp/. && curl -sSL -O https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb && dpkg -i packages-microsoft-prod.deb && rm packages-microsoft-prod.deb && apt-get -y update && apt-get install azcopy && cd
