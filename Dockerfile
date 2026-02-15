@@ -140,11 +140,11 @@ RUN apt-get -y install s3cmd
 
 ### Install s5cmd
 ### REF: https://github.com/peak/s5cmd
-RUN cd /tmp/. && curl -JRLO "https://github.com/peak/s5cmd/releases/download/v2.3.0/s5cmd_2.3.0_Linux-64bit.tar.gz" && cd /usr/local/bin/. && tar xvzf /tmp/s5cmd_2.3.0_Linux-64bit.tar.gz && cd
+RUN cd /tmp/. && curl -JRLO "https://github.com/peak/s5cmd/releases/download/v2.3.0/s5cmd_2.3.0_Linux-64bit.tar.gz" && cd /usr/local/bin/. && tar xvzf /tmp/s5cmd_2.3.0_Linux-64bit.tar.gz s5cmd && && chown root:root ./s5cmd && cd
 
 ### Install Backblaze b2
 ### REF: https://www.backblaze.com/docs/cloud-storage-command-line-tools
-#RUN cd /usr/local/bin/. && curl -JRLO "https://github.com/Backblaze/B2_Command_Line_Tool/releases/latest/download/b2-linux" && mv ./b2-linux ./b2 && cd
+RUN cd /usr/local/bin/. && curl -JRLO "https://github.com/Backblaze/B2_Command_Line_Tool/releases/latest/download/b2-linux" && mv ./b2-linux ./b2 && cd
 
 
 ### For Google Drive cloud
