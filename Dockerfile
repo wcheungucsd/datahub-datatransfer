@@ -138,6 +138,10 @@ RUN cd /tmp/. && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
 ### REF: https://s3tools.org/s3cmd
 RUN apt-get -y install s3cmd
 
+### Install s3cli
+### REF: https://github.com/shvc/s3cli
+RUN cd /tmp/. && curl -JRLO "https://github.com/shvc/s3cli/releases/download/v2.2.14/s3cli-2.2.14-linux-amd64.zip" && cd /usr/local/bin/. && unzip /tmp/s3cli-2.2.14-linux-amd64.zip && chown root:root ./s3cli && cd
+
 ### Install s5cmd
 ### REF: https://github.com/peak/s5cmd
 RUN cd /tmp/. && curl -JRLO "https://github.com/peak/s5cmd/releases/download/v2.3.0/s5cmd_2.3.0_Linux-64bit.tar.gz" && cd /usr/local/bin/. && tar xvzf /tmp/s5cmd_2.3.0_Linux-64bit.tar.gz s5cmd && chown root:root ./s5cmd && cd
