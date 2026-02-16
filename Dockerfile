@@ -228,6 +228,9 @@ RUN cd /usr/local/bin/. && curl -JRLO "https://github.com/Backblaze/B2_Command_L
 ### Install extra file management apps
 ###
 
+### Install file
+RUN apt-get -y install file
+
 ### Install tree
 RUN apt-get -y install tree
 
