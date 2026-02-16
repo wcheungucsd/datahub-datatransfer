@@ -138,6 +138,10 @@ RUN cd /tmp/. && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
 ### REF: https://s3tools.org/s3cmd
 RUN apt-get -y install s3cmd
 
+### Install s4cmd
+### REF: https://github.com/bloomreach/s4cmd
+RUN apt-get -y install s4cmd
+
 ### Install s3cli
 ### REF: https://github.com/shvc/s3cli
 RUN cd /tmp/. && curl -JRLO "https://github.com/shvc/s3cli/releases/download/v2.2.14/s3cli-2.2.14-linux-amd64.zip" && cd /usr/local/bin/. && unzip /tmp/s3cli-2.2.14-linux-amd64.zip && chown root:root ./s3cli && cd
