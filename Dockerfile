@@ -81,6 +81,10 @@ RUN apt-get -y install aria2
 ### REF: https://zsync.moria.org.uk/
 #RUN apt-get -y install zsync
 
+### Install mbuffer
+### REF: https://www.maier-komor.de/mbuffer.html
+RUN apt-get -y install mbuffer
+
 
 ### Install cadaver
 ### REF: ???
